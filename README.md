@@ -17,7 +17,7 @@ This project implements a simulator for the Tomasulo algorithm, allowing step-by
 
 ### Installation
 
-1. Clone the repository:
+Clone the repository:
 
    ```bash
    git clone https://github.com/your-username/tomasulo-simulator.git
