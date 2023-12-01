@@ -1,8 +1,9 @@
+import InputForms from "./components/InputForms";
 const App = () => {
   return (
-    <div>
-      <h1>App</h1>
-    </div>
+    <>
+     <InputForms /> 
+  </>
   );
 }
 export default App;

@@ -1,0 +1,28 @@
+.input-froms-container {
+  margin: 5%;
+  width: 800px;
+  padding: 2%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+
+}
+h2{
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.input-form {
+  margin-inline: 4%;
+  margin-top: 5%;
+  padding: 2%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.steps-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2%;
+  margin-inline: 3%;
+}
+
