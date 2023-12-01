@@ -1,4 +1,3 @@
-
 * {
   box-sizing: border-box;
 }
@@ -20,7 +19,11 @@ body {
   min-height: 100dvh;
   display: flex;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
 }
 
-
+.images-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+}

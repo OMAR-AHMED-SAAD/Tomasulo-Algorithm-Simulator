@@ -1,5 +1,6 @@
 import { Button, Steps, Form, message } from "antd";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LatencyForm from "./LatencyForm";
 import ReservationStationForm from "./ReservationStationsForm";
 import "../css/InputForms.css";
@@ -7,6 +8,7 @@ import { baseApiUrl } from "../api";
 import axios from "axios";
 const { Step } = Steps;
 const InputForms = () => {
+  const navigate = useNavigate();
   const [current, setCurrent] = useState(0);
   const [latenciesForm] = Form.useForm();
   const [reservationStationsForm] = Form.useForm();
@@ -41,6 +43,7 @@ const InputForms = () => {
       )
       .then(() => {
         reservationStationsForm.resetFields();
+        navigate("/simulation");
       })
       .catch((err) => {
         console.log(err);
