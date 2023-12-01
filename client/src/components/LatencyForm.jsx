@@ -1,11 +1,8 @@
 import { Form, Input } from "antd";
 
-const LatencyForm = ({form}) => {
-
-
-
+const LatencyForm = ({ form }) => {
   return (
-    <Form form={form} layout="vertical">
+    <Form form={form} layout="inline" className="latency-form">
       <Form.Item
         label="FP SUB Latency"
         name="subLatency"

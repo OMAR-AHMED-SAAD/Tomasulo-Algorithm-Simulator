@@ -34,9 +34,13 @@ const InputForms = () => {
       <div className="input-form">{steps[current].content}</div>
       <br />
       <div className="steps-controls">
-        <Button type="primary" onClick={onBack}>
-          Back
-        </Button>
+        {current != 0 ? (
+          <Button type="primary" onClick={onBack}>
+            Back
+          </Button>
+        ) : (
+          ""
+        )}
         <Button type="primary" onClick={onNext}>
           {current != steps.length - 1 ? "Next" : "Finish"}
         </Button>
