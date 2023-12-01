@@ -25,9 +25,3 @@ h2{
   gap: 2%;
   margin-inline: 3%;
 }
-
-.latency-form{
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
