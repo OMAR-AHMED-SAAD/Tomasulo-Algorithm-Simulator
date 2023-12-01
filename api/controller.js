@@ -72,17 +72,21 @@ const parseInstruction = (str) => {
 	const li = str.split(" ");
 	switch (li[0].toLowerCase()) {
 		case "addi":
-			return AddI(li[3]);
+			return ["A", AddI(li[3]), li[1], li[2], li[3]];
 		case "add":
-			return Add();
+			return ["A", Add(), li[1], li[2], li[3]];
 		case "sub":
-			return Sub();
+			return ["A", Sub(), li[1], li[2], li[3]];
 		case "mul":
-			return Mul();
+			return ["M", Mul(), li[1], li[2], li[3]];
 		case "div":
-			return Div();
+			return ["M", Div(), li[1], li[2], li[3]];
 		case "bnez":
-			return Bnez();
+			return ["A", Bnez(), null, li[1], li[2]];
+		case "l.d":
+			return ["L", Load(), null, li[1], li[2]];
+		case "s.d":
+			return ["S", Store(), null, li[1], li[2]];
 		default:
 			break;
 	}
@@ -93,7 +97,7 @@ const AddI = (val) => {
 		busy: 1,
 		op: "addi",
 		Vj: 0,
-		Vk: val,
+		Vk: parseInt(val),
 		Qj: 0,
 		Qk: 0,
 		Time: 1,
@@ -127,7 +131,7 @@ const Sub = () => {
 	};
 };
 
-const mul = () => {
+const Mul = () => {
 	return {
 		busy: 1,
 		op: "mul",
@@ -166,10 +170,66 @@ const Bnez = () => {
 	};
 };
 
+const Load = () => {
+	return {
+		busy: 1,
+		op: "load",
+		Vj: 0,
+		Vk: 0,
+		Qj: 0,
+		Qk: 0,
+		Time: 1,
+		A: 0,
+	};
+};
+
+const Store = () => {
+	return {
+		busy: 1,
+		op: "store",
+		Vj: 0,
+		Vk: 0,
+		Qj: 0,
+		Qk: 0,
+		Time: 1,
+		A: 0,
+	};
+};
+
+const checkSpaceInReservationStation = (reservationStation, registerFile, ins) => {
+	let foundSpace = false;
+	let [type, instruction, reg1, reg2, reg3] = ins;
+	Object.entries(reservationStation).map((key, value) => {
+		if (value["busy"] === 0) {
+			if (foundSpace) return undefined;
+			fillInstruction(reg2, "j", regitserFile, instruction);
+			fillInstruction(reg3, "k", regitserFile, instruction);
+			reservationStation[key] = instruction;
+			foundSpace = true;
+			if (!reg1) {
+				registerFile[reg1]["Qi"] = key;
+			}
+		}
+		return undefined;
+	});
+	return foundSpace;
+};
+const fillInstruction = (reg, place, registerFile, instruction) => {
+	if (registerFile[reg]["Qi"] !== 0) {
+		instruction[`Q${place}`] = registerFile[reg]["Qi"];
+	} else {
+		instruction[`V${place}`] = registerFile[reg]["value"];
+	}
+};
+const checkSpaceInBuffers = (loadBuffers, storeBuffers, registerFile, cache, ins) => {
+	let [type, instruction, reg1, reg2, reg3] = ins;
+};
 export {
 	routerCheckup,
 	readInstructionsFile,
 	fillRegisterFile,
 	fillReservationStationsAndBuffers,
 	parseInstruction,
+	checkSpaceInReservationStation,
+	checkSpaceInBuffers,
 };
