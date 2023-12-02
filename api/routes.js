@@ -1,15 +1,13 @@
 import express from "express";
-import { routerCheckup, readInstructionsFile } from "./controller.js";
+import {
+  routerCheckup,
+  readInstructionsFile,
+  setLatencies,
+  setReservationStationsSizes,
+} from "./controller.js";
 const router = express.Router();
 
 router.get("/isalive", routerCheckup);
-router.get("/read", readInstructionsFile);
-router.post("/readLatencies", (req, res) => {
-	console.log(req.body);
-	res.send("readLatencies");
-});
-router.post("/readReservationStationsSizes", (req, res) => {
-	console.log(req.body);
-	res.send("readReservationStationsSizes");
-});
+router.post("/readLatencies", setLatencies);
+router.post("/readReservationStationsSizes", setReservationStationsSizes);
 export default router;
