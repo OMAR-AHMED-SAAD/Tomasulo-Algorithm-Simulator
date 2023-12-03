@@ -22,7 +22,6 @@ const InputForms = () => {
   ];
 
   const submitLatencies = () => {
-    console.log(latenciesForm.getFieldsValue());
     axios
       .post(`${baseApiUrl}/readLatencies`, latenciesForm.getFieldsValue())
       .then(() => {

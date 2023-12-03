@@ -11,6 +11,19 @@ export const AddI = (val) => {
   };
 };
 
+export const SubI = (val) => {
+  return {
+    busy: 1,
+    op: "subi",
+    Vj: 0,
+    Vk: parseInt(val),
+    Qj: 0,
+    Qk: 0,
+    Time: -1,
+    A: 0,
+  };
+};
+
 export const Add = () => {
   return {
     busy: 1,
@@ -71,7 +84,7 @@ export const Bnez = (address) => {
     Qj: 0,
     Qk: 0,
     Time: -1,
-    A: parseInt(address),
+    A: address,
   };
 };
 
@@ -79,10 +92,10 @@ export const Load = (address) => {
   return {
     busy: 1,
     op: "load",
-    Vj: 0,
-    Vk: 0,
-    Qj: 0,
-    Qk: 0,
+    // Vj: 0,
+    // Vk: 0,
+    // Qj: 0,
+    // Qk: 0,
     Time: -1,
     A: parseInt(address),
   };
@@ -93,10 +106,46 @@ export const Store = (address) => {
     busy: 1,
     op: "store",
     Vj: 0,
-    Vk: 0,
+    // Vk: 0,
     Qj: 0,
-    Qk: 0,
+    // Qk: 0,
     Time: -1,
     A: parseInt(address),
   };
 };
+
+export const doLogic = (station, cache)=>{
+  const x = station.Vj;
+  const y = station.Vk;
+  switch(station.op){
+    case "add": case "addi":
+      return addLogic(x,y);
+    case "sub": case "subi":
+      return subLogic(x,y);
+    case "mult":
+      return multLogic(x,y);
+    case "div":
+      return divLogic(x,y);
+    case "load":
+      return loadLogic(station.A,cache);
+  }
+}
+const addLogic = (x,y)=>{
+  return x+y;
+}
+
+const subLogic = (x,y)=>{
+  return x-y;
+}
+
+const multLogic = (x,y) => {
+  return x*y;
+}
+
+const divLogic = (x,y) => {
+  return x/y;
+}
+
+const loadLogic = (address,cache) => {
+  return cache[address];
+}

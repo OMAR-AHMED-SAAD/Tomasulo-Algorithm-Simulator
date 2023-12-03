@@ -1,32 +1,35 @@
 import { Form, Input } from "antd";
-
+  // addSize: 3,
+  // mulSize: 2,
+  // loadSize: 3,
+  // storeSize: 3,
 const ReservationStationForm = ({ form }) => {
   return (
     <Form form={form} layout="horizontal">
       <Form.Item
         label="ADD/SUB"
-        name="addsubReservationStation"
+        name="addSize"
         rules={[{ required: true, message: "Please input station size" }]}
       >
         <Input type="number" />
       </Form.Item>
       <Form.Item
         label="MUL/DIV"
-        name="muldivReservationStation"
+        name="mulSize"
         rules={[{ required: true, message: "Please input station size" }]}
       >
         <Input type="number" />
       </Form.Item>
       <Form.Item
         label="LOAD BUFFER"
-        name="loadReservationStation"
+        name="loadSize"
         rules={[{ required: true, message: "Please input station size" }]}
       >
         <Input type="number" />
       </Form.Item>
       <Form.Item
         label="STORE BUFFER"
-        name="storeReservationStation"
+        name="storeSize"
         rules={[{ required: true, message: "Please input station size" }]}
       >
         <Input type="number" />

@@ -1,6 +1,14 @@
 import { Table } from 'antd';
 
-const StoreBuffer = ({ storeBuffer }) => {
+const ReservationStation = ({ stationData }) => {
+  // busy: 0,
+  //     op: "",
+  //     Vj: 0,
+  //     Vk: 0,
+  //     Qj: 0,
+  //     Qk: 0,
+  //     Time: 0,
+  //     A: 0,
   const columns = [
     {
       title: 'ID',
@@ -23,9 +31,19 @@ const StoreBuffer = ({ storeBuffer }) => {
       key: 'Vj',
     },
     {
+      title: 'Vk',
+      dataIndex: 'Vk',
+      key: 'Vk',
+    },
+    {
       title: 'Qj',
       dataIndex: 'Qj',
       key: 'Qj',
+    },
+    {
+      title: 'Qk',
+      dataIndex: 'Qk',
+      key: 'Qk',
     },
     {
       title: 'Time',
@@ -38,9 +56,9 @@ const StoreBuffer = ({ storeBuffer }) => {
       key: 'A',
     },
   ];
-  const data = Object.entries(storeBuffer).map(([id, values]) => ({ id, ...values }));
+  const data = Object.entries(stationData).map(([id, values]) => ({ id, ...values }));
   return (
     <Table columns={columns} dataSource={data} />
   );
 };
-export default StoreBuffer;
+export default ReservationStation;

@@ -1,32 +1,31 @@
 import { Form, Input } from "antd";
-
 const LatencyForm = ({ form }) => {
   return (
     <Form form={form} layout="horizontal">
       <Form.Item
         label="SUB Latency"
-        name="subLatency"
+        name="sub"
         rules={[{ required: true, message: "Please input sub latency!" }]}
       >
         <Input type="number" />
       </Form.Item>
       <Form.Item
         label="ADD Latency"
-        name="addLatency"
+        name="add"
         rules={[{ required: true, message: "Please input add latency!" }]}
       >
         <Input type="number" />
       </Form.Item>
       <Form.Item
         label="MUL Latency"
-        name="multiplyLatency"
+        name="mul"
         rules={[{ required: true, message: "Please input multiply latency!" }]}
       >
         <Input type="number" />
       </Form.Item>
       <Form.Item
         label="DIV Latency"
-        name="divideLatency"
+        name="div"
         rules={[{ required: true, message: "Please input divide latency!" }]}
       >
         <Input type="number" />
@@ -47,7 +46,7 @@ const LatencyForm = ({ form }) => {
       </Form.Item>
       <Form.Item
         label="SUB IMM Latency"
-        name="intAddLatency"
+        name="subi"
         rules={[{ required: true, message: "Please input add latency!" }]}
       >
         <Input type="number" />
