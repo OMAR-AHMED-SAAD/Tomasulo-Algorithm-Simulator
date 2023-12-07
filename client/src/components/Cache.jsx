@@ -14,7 +14,7 @@ function Cache({ cache }) {
         },
       
       ];
-      const data = cache.map((id,values) => ({ id, data:values }));
+      const data = cache.map((values,id) => ({ id, data:values }));
   return (
     <Table columns={columns} dataSource={data} />
   )

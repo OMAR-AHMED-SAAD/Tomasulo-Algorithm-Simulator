@@ -226,6 +226,8 @@ const printCycle = () => {
   console.table(storeBuffer);
   console.log("REG FILE");
   console.table(registerFile);
+  console.log("CACHE");
+  console.table(cache);
 };
 
 const issue = () => {

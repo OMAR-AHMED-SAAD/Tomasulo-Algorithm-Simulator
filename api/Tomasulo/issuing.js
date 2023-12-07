@@ -95,7 +95,7 @@ export const issuingTableInstruction = (
     issue: cycleCount,
     startExecution: 0,
     endExecution: 0,
-    writeResult: 0,
+    writeResult: "-",
   };
   return tableInstruction;
 };
