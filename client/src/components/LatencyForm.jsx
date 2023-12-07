@@ -1,5 +1,16 @@
-import { Form, Input } from "antd";
+import { Form, Input,Button,Col } from "antd";
 const LatencyForm = ({ form }) => {
+  const handleAutoFill = () => {
+    form.setFieldsValue({
+      sub: 1,
+      add: 1,
+      mul: 1,
+      div: 1,
+      load: 1,
+      store: 1,
+      subi: 1,
+    });
+  };
   return (
     <Form form={form} layout="horizontal">
       <Form.Item
@@ -50,6 +61,13 @@ const LatencyForm = ({ form }) => {
         rules={[{ required: true, message: "Please input add latency!" }]}
       >
         <Input type="number" />
+      </Form.Item>
+      <Form.Item style={{marginBottom:0}}>
+        <Col span={24} style={{ textAlign: "right" }}>
+          <Button type="primary" onClick={handleAutoFill} >
+            Autofill
+          </Button>
+        </Col>
       </Form.Item>
     </Form>
   );

@@ -1,9 +1,13 @@
-import { Form, Input } from "antd";
-  // addSize: 3,
-  // mulSize: 2,
-  // loadSize: 3,
-  // storeSize: 3,
+import { Form, Input, Button, Col } from "antd";
 const ReservationStationForm = ({ form }) => {
+  const handleAutoFill = () => {
+    form.setFieldsValue({
+      addSize: 3,
+      mulSize: 2,
+      loadSize: 3,
+      storeSize: 3,
+    });
+  };
   return (
     <Form form={form} layout="horizontal">
       <Form.Item
@@ -33,6 +37,13 @@ const ReservationStationForm = ({ form }) => {
         rules={[{ required: true, message: "Please input station size" }]}
       >
         <Input type="number" />
+      </Form.Item>
+      <Form.Item style={{ marginBottom: 0 }}>
+        <Col span={24} style={{ textAlign: "right" }}>
+          <Button type="primary" onClick={handleAutoFill}>
+            Autofill
+          </Button>
+        </Col>
       </Form.Item>
     </Form>
   );

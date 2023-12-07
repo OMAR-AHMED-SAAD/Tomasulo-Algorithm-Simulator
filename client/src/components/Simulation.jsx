@@ -9,6 +9,7 @@ import StoreBuffer from "./StoreBuffer";
 import IssuingTable from "./IssuingTable";
 import RegisterFile from "./RegisterFile";
 import Cache from "./Cache";
+import "../css/simulation.css";
 const Simulation = () => {
   const [cycles, setCycles] = useState([]);
   const [currentCycle, setCurrentCycle] = useState({});
@@ -43,22 +44,77 @@ const Simulation = () => {
 
   return load ? (
     <div>
-      <h2>Cycle: {currentCycle.cycle}</h2>
-      <IssuingTable issuingTable={currentCycle.issuingTable} />
-      <ReservationStation stationData={currentCycle.addSubReservationStation} />
+      <div
+       className="simulation-header"
+      >
+        <h1>Cycle: {currentCycle?.cycle}</h1>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "row",
+            gap: "10px",
+            marginBottom: "20px",
+          }}
+        >
+          <ConditionalRender condition={currentCycleCount !== 0}>
+            <Button size="large" type="primary" onClick={handleBackCycle}>
+              Back
+            </Button>
+          </ConditionalRender>
+          <ConditionalRender
+            condition={currentCycleCount !== cycles.length - 1}
+          >
+            <Button size="large" type="primary" onClick={handleNextCycle}>
+              Next
+            </Button>
+          </ConditionalRender>
+        </div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "row",
+          gap: "10px",
+          marginBottom: "20px",
+        }}
+      >
+        <div>
+          <h3>Issuing Table</h3>
+          <IssuingTable issuingTable={currentCycle?.issuingTable} />
+        </div>
+        <div>
+          <h3>Register File</h3>
+          <RegisterFile registerFile={currentCycle?.registerFile} />
+        </div>
+        <div>
+          <h3>Cache</h3>
+          <Cache cache={currentCycle?.cache} />
+        </div>
+      </div>
+     <div className="reservation-stations-grid">
+     <div>
+     <h3>Add/Sub Reservation Station</h3>
       <ReservationStation
-        stationData={currentCycle.multDivReservationStation}
+        stationData={currentCycle?.addSubReservationStation}
       />
-      <LoadBuffer loadBuffer={currentCycle.loadBuffer} />
-      <StoreBuffer storeBuffer={currentCycle.storeBuffer} />
-      <RegisterFile registerFile={currentCycle.registerFile} />
-      <Cache cache={currentCycle.cache} />
-      <ConditionalRender condition={currentCycleCount !== 0}>
-        <Button onClick={handleBackCycle}>Back</Button>
-      </ConditionalRender>
-      <ConditionalRender condition={currentCycleCount !== cycles.length-1}>
-        <Button onClick={handleNextCycle}>Next</Button>
-      </ConditionalRender>
+     </div>
+     <div>
+     <h3>Mult/Div Reservation Station</h3>
+      <ReservationStation
+        stationData={currentCycle?.multDivReservationStation}
+      />
+     </div>
+    <div>
+    <h3>Load Buffer</h3>
+      <LoadBuffer loadBuffer={currentCycle?.loadBuffer} />
+    </div>
+     <div>
+     <h3>Store Buffer</h3>
+      <StoreBuffer storeBuffer={currentCycle?.storeBuffer} />
+     </div>
+     </div>
     </div>
   ) : (
     <Spin size="large" />
