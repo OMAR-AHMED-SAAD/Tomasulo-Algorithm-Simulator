@@ -48,7 +48,7 @@ export const fillReservationStationsAndBuffers = (
   for (let i = 1; i <= count; i++) {
     reservationStation[`${type}${i}`] = {
       busy: 0,
-      op: "",
+      op: "-",
       Vj: 0,
       Vk: 0,
       Qj: 0,
@@ -63,7 +63,7 @@ export const fillLoadBuffer = (loadBuffer, count) => {
   for (let i = 1; i <= count; i++) {
     loadBuffer[`L${i}`] = {
       busy: 0,
-      op: "",
+      op: "-",
       Time: 0,
       A: 0,
     };
@@ -74,7 +74,7 @@ export const fillStoreBuffer = (storeBuffer, count) => {
   for (let i = 1; i <= count; i++) {
     storeBuffer[`S${i}`] = {
       busy: 0,
-      op: "",
+      op: "-",
       Vj: 0,
       Qj: 0,
       Time: 0,

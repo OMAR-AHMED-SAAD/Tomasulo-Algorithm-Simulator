@@ -93,8 +93,8 @@ export const issuingTableInstruction = (
   let tableInstruction = {
     instruction: unParsedInstruction,
     issue: cycleCount,
-    startExecution: 0,
-    endExecution: 0,
+    startExecution: "-",
+    endExecution: "-",
     writeResult: "-",
   };
   return tableInstruction;

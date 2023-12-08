@@ -114,38 +114,40 @@ export const Store = (address) => {
   };
 };
 
-export const doLogic = (station, cache)=>{
+export const doLogic = (station, cache) => {
   const x = station.Vj;
   const y = station.Vk;
-  switch(station.op){
-    case "add": case "addi":
-      return addLogic(x,y);
-    case "sub": case "subi":
-      return subLogic(x,y);
-    case "mult":
-      return multLogic(x,y);
+  switch (station.op) {
+    case "add":
+    case "addi":
+      return addLogic(x, y);
+    case "sub":
+    case "subi":
+      return subLogic(x, y);
+    case "mul":
+      return multLogic(x, y);
     case "div":
-      return divLogic(x,y);
+      return divLogic(x, y);
     case "load":
-      return loadLogic(station.A,cache);
+      return loadLogic(station.A, cache);
   }
-}
-const addLogic = (x,y)=>{
-  return x+y;
-}
+};
+const addLogic = (x, y) => {
+  return x + y;
+};
 
-const subLogic = (x,y)=>{
-  return x-y;
-}
+const subLogic = (x, y) => {
+  return x - y;
+};
 
-const multLogic = (x,y) => {
-  return x*y;
-}
+const multLogic = (x, y) => {
+  return x * y;
+};
 
-const divLogic = (x,y) => {
-  return x/y;
-}
+const divLogic = (x, y) => {
+  return x / y;
+};
 
-const loadLogic = (address,cache) => {
+const loadLogic = (address, cache) => {
   return cache[address];
-}
+};
