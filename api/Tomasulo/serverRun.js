@@ -3,8 +3,8 @@ import { startSimulation, setLatency, setSizes } from "./Tomasulo.js";
 const startSimulationFromServer = async () => {
   setLatency({
     sub: 1,
-    add: 1,
-    mul: 1,
+    add: 4,
+    mul: 6,
     div: 1,
     load: 1,
     store: 1,
