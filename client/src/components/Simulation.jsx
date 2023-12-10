@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { baseApiUrl } from "../api";
 import { Button, Spin } from "antd";
-import ConditionalRender from "./ConditionalRender/ConditionalRender";
 import ReservationStation from "./ReservationStation";
 import LoadBuffer from "./LoadBuffer";
 import StoreBuffer from "./StoreBuffer";
@@ -58,6 +57,17 @@ const Simulation = () => {
           <Button
             size="large"
             type="primary"
+            onClick={() => {
+              setCurrentCycleCount(0);
+              setCurrentCycle(cycles[0]);
+            }}
+            disabled={currentCycleCount == 0}
+          >
+            Skip to Start
+          </Button>
+          <Button
+            size="large"
+            type="primary"
             onClick={handleBackCycle}
             disabled={currentCycleCount == 0}
           >
@@ -70,6 +80,17 @@ const Simulation = () => {
             disabled={currentCycleCount == cycles.length - 1}
           >
             Next
+          </Button>
+          <Button
+            size="large"
+            type="primary"
+            onClick={() => {
+              setCurrentCycleCount(cycles.length - 1);
+              setCurrentCycle(cycles[cycles.length - 1]);
+            }}
+            disabled={currentCycleCount == cycles.length - 1}
+          >
+            Skip to End
           </Button>
         </div>
       </div>
