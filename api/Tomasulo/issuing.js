@@ -3,14 +3,13 @@ export const checkSpaceInReservationStation = (
   registerFile,
   ins
 ) => {
-  issuingTableInstruction(ins);
   let foundSpace = false;
   let [type, instruction, reg1, reg2, reg3] = ins;
   Object.entries(reservationStation).map(([key, value]) => {
     if (foundSpace) return undefined;
     if (value["busy"] == 0) {
       fillInstruction(reg2, "j", registerFile, instruction);
-      if (instruction.op !== "bnez")
+      if (instruction.op !== "bnez" && instruction.op !== "subi" && instruction.op !== "addi")
         fillInstruction(reg3, "k", registerFile, instruction);
       reservationStation[key] = instruction;
       foundSpace = true;
@@ -86,7 +85,6 @@ const checkSpaceinBufferHelper = (buffer, registerFile, ins) => {
 };
 
 export const issuingTableInstruction = (
-  ins,
   unParsedInstruction,
   cycleCount
 ) => {

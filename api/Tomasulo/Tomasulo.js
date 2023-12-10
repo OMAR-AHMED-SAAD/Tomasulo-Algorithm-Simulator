@@ -150,7 +150,7 @@ export const startSimulation = async () => {
   instructions = [];
   issuingHead = 0;
   pauseIssuing = false;
-  cache = new Array(16).fill(0);
+  cache = [1, 3, 2, 2, 1, 3, 2, 1, 3, 3, 2, 1, 2, 1, 3, 3];
   issuingTable = [];
   cycleCount = 1;
   await readInstructionsFile();
@@ -173,7 +173,7 @@ export const startSimulation = async () => {
 
 const startCycles = () => {
   let result = [];
-  while (cycleCount == 1 || !isFinished()) {
+  while (cycleCount == 1 || !isFinished() || issuingHead < instructions.length) {
     if (!pauseIssuing) issue();
     execute();
     write();
@@ -232,14 +232,15 @@ const printCycle = () => {
 
 const issue = () => {
   if (issuingHead >= instructions.length) return;
-  const { instruction, unParsedInstruction } = instructions.find(
+  let { instruction, unParsedInstruction } = instructions.find(
     (instruction) => instruction.address == issuingHead
   );
+  instruction=JSON.parse(JSON.stringify(instruction));
   if (checkStationOrBuffer(instruction)) {
     //pause issuing if branch and resume when branch is resolved
     //and write address of the instruction with loop address to the issuing Head in the finish execution
     issuingTable.push(
-      issuingTableInstruction(instruction, unParsedInstruction, cycleCount)
+      issuingTableInstruction(unParsedInstruction, cycleCount)
     );
     instruction[1].issueCycle = cycleCount;
     if (instruction[1].op == "bnez") pauseIssuing = true;

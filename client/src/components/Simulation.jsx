@@ -44,9 +44,7 @@ const Simulation = () => {
 
   return load ? (
     <div>
-      <div
-       className="simulation-header"
-      >
+      <div className="simulation-header">
         <h1>Cycle: {currentCycle?.cycle}</h1>
         <div
           style={{
@@ -57,18 +55,22 @@ const Simulation = () => {
             marginBottom: "20px",
           }}
         >
-          <ConditionalRender condition={currentCycleCount !== 0}>
-            <Button size="large" type="primary" onClick={handleBackCycle}>
-              Back
-            </Button>
-          </ConditionalRender>
-          <ConditionalRender
-            condition={currentCycleCount !== cycles.length - 1}
+          <Button
+            size="large"
+            type="primary"
+            onClick={handleBackCycle}
+            disabled={currentCycleCount == 0}
           >
-            <Button size="large" type="primary" onClick={handleNextCycle}>
-              Next
-            </Button>
-          </ConditionalRender>
+            Back
+          </Button>
+          <Button
+            size="large"
+            type="primary"
+            onClick={handleNextCycle}
+            disabled={currentCycleCount == cycles.length - 1}
+          >
+            Next
+          </Button>
         </div>
       </div>
       <div
@@ -93,28 +95,28 @@ const Simulation = () => {
           <Cache cache={currentCycle?.cache} />
         </div>
       </div>
-     <div className="reservation-stations-grid">
-     <div>
-     <h3>Add/Sub Reservation Station</h3>
-      <ReservationStation
-        stationData={currentCycle?.addSubReservationStation}
-      />
-     </div>
-     <div>
-     <h3>Mult/Div Reservation Station</h3>
-      <ReservationStation
-        stationData={currentCycle?.multDivReservationStation}
-      />
-     </div>
-    <div>
-    <h3>Load Buffer</h3>
-      <LoadBuffer loadBuffer={currentCycle?.loadBuffer} />
-    </div>
-     <div>
-     <h3>Store Buffer</h3>
-      <StoreBuffer storeBuffer={currentCycle?.storeBuffer} />
-     </div>
-     </div>
+      <div className="reservation-stations-grid">
+        <div>
+          <h3>Add/Sub Reservation Station</h3>
+          <ReservationStation
+            stationData={currentCycle?.addSubReservationStation}
+          />
+        </div>
+        <div>
+          <h3>Mult/Div Reservation Station</h3>
+          <ReservationStation
+            stationData={currentCycle?.multDivReservationStation}
+          />
+        </div>
+        <div>
+          <h3>Load Buffer</h3>
+          <LoadBuffer loadBuffer={currentCycle?.loadBuffer} />
+        </div>
+        <div>
+          <h3>Store Buffer</h3>
+          <StoreBuffer storeBuffer={currentCycle?.storeBuffer} />
+        </div>
+      </div>
     </div>
   ) : (
     <Spin size="large" />

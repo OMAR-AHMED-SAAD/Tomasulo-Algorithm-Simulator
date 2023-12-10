@@ -33,9 +33,15 @@ function IssuingTable({ issuingTable }) {
           key: 'writeResult',
         },
       ];
+
+      const paginationConfig = {
+        showSizeChanger: false, // Disable the page size changer
+        defaultPageSize: 4, // Default page size
+      };
+
       const data = Object.entries(issuingTable).map(([id, values]) => ({ id, ...values }));
   return (
-    <Table columns={columns} dataSource={data} />
+    <Table columns={columns} dataSource={data} pagination={paginationConfig} />
   )
 }
 
