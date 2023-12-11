@@ -248,7 +248,7 @@ const issue = () => {
   }
 };
 
-const execute = (ins) => {
+const execute = () => {
   executeAddSub(addSubReservationStation, latencies, issuingTable, cycleCount);
   executeMultDiv(
     multDivReservationStation,
