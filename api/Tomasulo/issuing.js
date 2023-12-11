@@ -57,7 +57,7 @@ const checkConflict = (bufferContent, address) => {
     if (
       value["A"] === parseInt(address) &&
       value["busy"] != 0 &&
-      value["time"] != 0
+      value["Time"] != 0
     ) {
       noConflict = false;
     }
