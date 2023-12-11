@@ -1,4 +1,4 @@
-import { AddI,SubI, Add, Sub, Mul, Div, Bnez, Load, Store } from "./instructions.js";
+import { AddI, SubI, Add, Sub, Mul, Div, Bnez, Load, Store } from "./instructions.js";
 export const parseInstruction = (str) => {
   let li = str.split(" ");
   li[1] = li[1].split(",");
@@ -8,7 +8,7 @@ export const parseInstruction = (str) => {
     return ["A", AddI(li[3]), li[1], li[2], li[3]];
   } else if (operationName.includes("subi")) {
     return ["A", SubI(li[3]), li[1], li[2], li[3]];
-  }else if (operationName.includes("add")) {
+  } else if (operationName.includes("add")) {
     return ["A", Add(), li[1], li[2], li[3]];
   } else if (operationName.includes("sub")) {
     return ["A", Sub(), li[1], li[2], li[3]];
@@ -40,11 +40,7 @@ export const fillRegisterFile = (registerFile) => {
   }
 };
 
-export const fillReservationStationsAndBuffers = (
-  type,
-  count,
-  reservationStation
-) => {
+export const fillReservationStationsAndBuffers = (type, count, reservationStation) => {
   for (let i = 1; i <= count; i++) {
     reservationStation[`${type}${i}`] = {
       busy: 0,
