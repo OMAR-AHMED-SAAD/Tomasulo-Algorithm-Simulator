@@ -1,8 +1,4 @@
-export const checkSpaceInReservationStation = (
-  reservationStation,
-  registerFile,
-  ins
-) => {
+export const checkSpaceInReservationStation = (reservationStation, registerFile, ins) => {
   let foundSpace = false;
   let [type, instruction, reg1, reg2, reg3] = ins;
   Object.entries(reservationStation).map(([key, value]) => {
@@ -26,22 +22,14 @@ const fillInstruction = (reg, place, registerFile, instruction) => {
     instruction[`V${place}`] = registerFile[reg]["value"];
   }
 };
-export const checkSpaceInBuffers = (
-  loadBuffer,
-  storeBuffer,
-  registerFile,
-  cache,
-  ins
-) => {
+export const checkSpaceInBuffers = (loadBuffer, storeBuffer, registerFile, cache, ins) => {
   let [type, instruction, reg1, reg2, reg3] = ins;
   let foundSpace = false;
   let noConflict = true;
   const storeBufferContent = Object.entries(storeBuffer);
   const loadBufferContent = Object.entries(loadBuffer);
   if (instruction.op == "store")
-    noConflict =
-      checkConflict(storeBufferContent, reg3) &&
-      checkConflict(loadBufferContent, reg3);
+    noConflict = checkConflict(storeBufferContent, reg3) && checkConflict(loadBufferContent, reg3);
   else noConflict = checkConflict(storeBufferContent, reg3);
   if (noConflict)
     foundSpace =
@@ -54,11 +42,7 @@ export const checkSpaceInBuffers = (
 const checkConflict = (bufferContent, address) => {
   let noConflict = true;
   bufferContent.map(([key, value]) => {
-    if (
-      value["A"] === parseInt(address) &&
-      value["busy"] != 0 &&
-      value["time"] != 0
-    ) {
+    if (value["A"] === parseInt(address) && value["busy"] != 0 && value["Time"] != 0) {
       noConflict = false;
     }
     return undefined;
@@ -73,8 +57,7 @@ const checkSpaceinBufferHelper = (buffer, registerFile, ins) => {
   bufferContent.map(([key, value]) => {
     if (foundSpace) return undefined;
     if (value["busy"] == 0) {
-      if (instruction.op == "store")
-        fillInstruction(reg2, "j", registerFile, instruction);
+      if (instruction.op == "store") fillInstruction(reg2, "j", registerFile, instruction);
       buffer[key] = instruction;
       foundSpace = true;
       if (instruction.op == "load") registerFile[reg2]["Qi"] = key;
@@ -84,10 +67,7 @@ const checkSpaceinBufferHelper = (buffer, registerFile, ins) => {
   return foundSpace;
 };
 
-export const issuingTableInstruction = (
-  unParsedInstruction,
-  cycleCount
-) => {
+export const issuingTableInstruction = (unParsedInstruction, cycleCount) => {
   let tableInstruction = {
     instruction: unParsedInstruction,
     issue: cycleCount,
